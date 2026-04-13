@@ -5,15 +5,34 @@
     </head>
     <body>
         <div class="counter-wrapper">
-            <h1>Pomodoro Sessions:</h1>
+            <h1>Current Pomodoro Session:</h1>
             <h2 id="count-el">0</h2>
-            <button id="increment-btn" onclick="increment()">INCREMENT (+)</button>
-            <button id="decrement-btn" onclick="decrement()">DECREMENT (-)</button>
-            <button id="save-btn" onclick="save()">SAVE</button>
-            <p id="save-el">Previous Entries: </p>
+            <div>
+                <h3>Pomodoro Session Controls:</h3>
+                <div class="session-controls">
+                    <h4>Length: </h4>
+                    <button id="decrement-btn" onclick="decrement()">-</button>
+                    <span id="length-el">25</span>
+                    <button id="increment-btn" onclick="increment()">+</button>                    
+                </div>
+                <button id="save-btn" onclick="save()">START Session</button>
+            </div>
+            <div>
+                <h3>Break Session Controls:</h3>
+                <div class="session-controls">
+                    <h4>Length: </h4>
+                    <button id="decrement-btn" onclick="decrement()">-</button>
+                    <span id="length-el">25</span>
+                    <button id="increment-btn" onclick="increment()">+</button>
+                    
+                </div>
+                <button id="save-btn" onclick="save()">START Session</button>
+            </div>
+            <hr></hr>
+            <p id="save-el">Completed Sessions: </p>
         </div>
             <script src="index.js">
-                nnerText
+                
             </script>
         
     </body>

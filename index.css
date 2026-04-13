@@ -39,7 +39,6 @@ button {
     padding-bottom: 15px;
     color: whitesmoke;
     font-weight: bold;
-    width: 200px;
     margin-bottom: 10px;
     margin-top: 10px;
     border-radius: 5px;
@@ -54,5 +53,13 @@ button {
 }
 
 #decrement-btn{
-    background: #383838;
+    background: #283838;
+}
+
+.session-controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
