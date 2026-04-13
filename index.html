@@ -5,28 +5,36 @@
     </head>
     <body>
         <div class="counter-wrapper">
-            <h1>Current Pomodoro Session:</h1>
-            <h2 id="count-el">0</h2>
-            <div>
-                <h3>Pomodoro Session Controls:</h3>
-                <div class="session-controls">
-                    <h4>Length: </h4>
-                    <button id="decrement-btn" onclick="decrement()">-</button>
-                    <span id="length-el">25</span>
-                    <button id="increment-btn" onclick="increment()">+</button>                    
-                </div>
-                <button id="save-btn" onclick="save()">START Session</button>
+            <h1>Current Pomodoro</h1>
+            <h2 id="count-el">00:00</h2>
+            <div class="timer-controls">
+                <button data-id="pause">Pause</button>
+                <button data-id="resume">Resume</button>
+                <button data-id="restart">Restart</button>
+                <button data-id="stop">Stop</button>
             </div>
-            <div>
-                <h3>Break Session Controls:</h3>
-                <div class="session-controls">
-                    <h4>Length: </h4>
-                    <button id="decrement-btn" onclick="decrement()">-</button>
-                    <span id="length-el">25</span>
-                    <button id="increment-btn" onclick="increment()">+</button>
-                    
+            <div class="control-wrapper">
+                <div>
+                    <h3>Pomodoro</h3>
+                    <div class="session-controls">
+                        <h4>Length: </h4>
+                        <button class="rouded-btn" data-target="pomodoro" data-id="decrement">-</button>
+                        <span id="pomlength-el">0</span>
+                        <button class="rouded-btn" data-target="pomodoro" data-id="increment">+</button>                    
+                    </div>
+                    <button class="start-btn" data-target="pomodoro" data-id="start">START Session</button>
                 </div>
-                <button id="save-btn" onclick="save()">START Session</button>
+                <div>
+                    <h3>Break</h3>
+                    <div class="break-controls">
+                        <h4>Length: </h4>
+                        <button class="rouded-btn" data-target="break" data-id="decrement">-</button>
+                        <span id="breaklength-el">0</span>
+                        <button class="rouded-btn" data-target="break" data-id="increment">+</button>
+                        
+                    </div>
+                    <button class="start-btn" data-target="break" data-id="start">START BREAK</button>
+                </div>
             </div>
             <hr></hr>
             <p id="save-el">Completed Sessions: </p>
