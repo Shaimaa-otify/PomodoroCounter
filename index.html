@@ -2,11 +2,15 @@
 <html>
     <head>
         <link rel="stylesheet" href="index.css">
+        <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
     </head>
     <body>
         <div class="counter-wrapper">
-            <h1>Current Pomodoro</h1>
+            <h1>Let's Pomodoro</h1>
             <h2 id="count-el">00:00</h2>
+            <button id="test-mode-btn" data-id="toggle-test-mode" class="mode-btn">Test Mode: ON (seconds)</button>
+            <button id="stop-alert-btn" data-id="stop-alert" style="display:none;">🔔 Stop Alert</button>
             <div class="timer-controls">
                 <button data-id="pause">Pause</button>
                 <button data-id="resume">Resume</button>
@@ -15,9 +19,9 @@
             </div>
             <div class="control-wrapper">
                 <div>
-                    <h3>Pomodoro</h3>
+                    <h3 class="red">Pomodoro</h3>
                     <div class="session-controls">
-                        <h4>Length: </h4>
+                        <p>Length: </p>
                         <button class="rouded-btn" data-target="pomodoro" data-id="decrement">-</button>
                         <span id="pomlength-el">0</span>
                         <button class="rouded-btn" data-target="pomodoro" data-id="increment">+</button>                    
@@ -25,9 +29,9 @@
                     <button class="start-btn" data-target="pomodoro" data-id="start">START Session</button>
                 </div>
                 <div>
-                    <h3>Break</h3>
+                    <h3 class="green">Break</h3>
                     <div class="break-controls">
-                        <h4>Length: </h4>
+                        <p>Length: </p>
                         <button class="rouded-btn" data-target="break" data-id="decrement">-</button>
                         <span id="breaklength-el">0</span>
                         <button class="rouded-btn" data-target="break" data-id="increment">+</button>

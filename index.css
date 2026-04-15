@@ -1,5 +1,6 @@
 *{
     box-sizing: border-box;
+    margin: 0;
 }
 
 body {
@@ -7,7 +8,7 @@ body {
     background-size: cover;
     background-position: center center;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: bold;
+    font-size: 1rem;
     text-align: center;
     height: 100vh;
     display: flex;
@@ -19,21 +20,31 @@ body {
     background-color: whitesmoke;
     margin: auto;
     border-radius: 20px;
-    padding: 20px;
+    padding: 15px;
     box-shadow: 0px 0px 15px 10px black;
     
 }
 
 h1 {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    font-size: 2rem;
     color: #990000;
 }
 
 h2 {
-    font-size: 50px;
-    margin-top: 0;
-    margin-bottom: 20px;
+    font-size: 1.5rem;
+    margin: .5em 0;
+}
+
+h3 {
+    font-size: 1rem;
+    margin: .5em 0;
+    
+}
+
+h4 {
+    font-size: 1rem;
+    
+    
 }
 
 button {
@@ -42,8 +53,7 @@ button {
 
 .start-btn {
     border: none;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding: 1em 2em;
     color: whitesmoke;
     background: #329900;
     font-weight: bold;
@@ -59,7 +69,8 @@ button {
 }
 
 
-.session-controls {
+.session-controls,
+.break-controls {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -71,7 +82,7 @@ button {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     gap: 20px;
 }
 
@@ -80,3 +91,28 @@ background: #283838;
 
 
 */
+
+.timer-controls button {
+    border: none;
+    border-radius: 5px;
+    padding: .5em 1em;
+    font-weight: bold;
+}
+
+.mode-btn {
+    border: none;
+    border-radius: 5px;
+    padding: .5em 1em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    background-color: #0f5d96;
+    color: white;
+}
+
+.red {
+    color: #990000;
+}
+
+.green {
+    color: #329900;
+}
