@@ -2,6 +2,8 @@ const countEl = document.getElementById("count-el")
 const pomlengthEl = document.getElementById("pomlength-el")
 const breaklengthEl = document.getElementById("breaklength-el")
 const testModeBtn = document.getElementById("test-mode-btn")
+const saveEl = document.getElementById("save-el")
+const stopAlertBtn = document.getElementById("stop-alert-btn")
 let countdownInterval = null
 let currentTarget = null
 let pausedSeconds = 0
@@ -9,6 +11,8 @@ let isPaused = false
 let audioContext = null
 let alertInterval = null
 let isTestMode = true
+let pendingCompletedSessions = []
+let savedCompletedSessions = []
 
 
 function increment(target) {
@@ -47,6 +51,33 @@ function setLengthButtonsDisabled(disabled) {
     })
 }
 
+function formatSessionLabel(target) {
+    return target === "pomodoro" ? "Pomodoro" : "Break"
+}
+
+function createSavedSessionMarkup(session) {
+    const sessionSpan = document.createElement("span")
+    sessionSpan.className = session.target === "pomodoro" ? "red" : "green"
+    sessionSpan.textContent = `${formatSessionLabel(session.target)} ${formatTime(session.durationSeconds)}`
+    return sessionSpan
+}
+
+function renderSavedSessions() {
+    saveEl.textContent = "Completed Sessions: "
+
+    if (savedCompletedSessions.length === 0) {
+        return
+    }
+
+    savedCompletedSessions.forEach((session, index) => {
+        if (index > 0) {
+            saveEl.append(document.createTextNode(", "))
+        }
+
+        saveEl.append(createSavedSessionMarkup(session))
+    })
+}
+
 function beep() {
     const oscillator = audioContext.createOscillator()
     const gainNode = audioContext.createGain()
@@ -77,6 +108,10 @@ function stopAlert() {
         alertInterval = null
     }
     document.getElementById('stop-alert-btn').style.display = 'none'
+    const celebrationMessage = document.querySelector(".celebration-message")
+    if (celebrationMessage) {
+        celebrationMessage.remove()
+    }
 }
 
 function launchFestiveConfetti() {
@@ -106,7 +141,8 @@ function countdown(target) {
         countEl.classList.add("green")
     }
     
-    let seconds = isPaused ? pausedSeconds : duration * (isTestMode ? 1 : 60)
+    const durationSeconds = duration * (isTestMode ? 1 : 60)
+    let seconds = isPaused ? pausedSeconds : durationSeconds
     if (!isPaused) {
         pomlengthEl.textContent = "0"
         breaklengthEl.textContent = "0"
@@ -127,9 +163,17 @@ function countdown(target) {
             setLengthButtonsDisabled(false)
             currentTarget = null
             pausedSeconds = 0
+            pendingCompletedSessions.push({
+                target,
+                durationSeconds
+            })
             playAlert()
             launchFestiveConfetti()
-            countEl.textContent = "Yay! Finished a " + (target === "pomodoro" ? "Pomodoro!" : "Break!")
+            const message = document.createElement("p")
+            message.textContent = "Yay! You Finished a " + (target === "pomodoro" ? "Pomodoro!" : "Break!")
+            document.querySelector("#heading").insertBefore(message, stopAlertBtn)
+            message.classList.add("celebration-message")
+            target === "pomodoro"? message.classList.add("red") : message.classList.add("green")
             document.getElementById('stop-alert-btn').style.display = 'inline-block'
         }
     }, 1000)
@@ -169,6 +213,16 @@ function stopCountdown() {
     countEl.textContent = "00:00"
 }
 
+function saveSession(){
+    if (pendingCompletedSessions.length === 0) {
+        return
+    }
+
+    savedCompletedSessions = savedCompletedSessions.concat(pendingCompletedSessions)
+    pendingCompletedSessions = []
+    renderSavedSessions()
+}
+
 document.addEventListener("click", function(event) {
     if (event.target.dataset.target === "pomodoro") {
         if (event.target.dataset.id === "increment") {
@@ -205,10 +259,14 @@ document.addEventListener("click", function(event) {
         isTestMode = !isTestMode
         updateTestModeButton()
     }
+    if (event.target.dataset.id === "save") {
+        saveSession()
+    }
 
 })
 
 updateTestModeButton()
+renderSavedSessions()
 
 
-let saveEl = document.getElementById("save-el")
+

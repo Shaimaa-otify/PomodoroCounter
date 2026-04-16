@@ -8,17 +8,21 @@ body {
     background-size: cover;
     background-position: center center;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 1rem;
+    font-size: .8rem;
     text-align: center;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
 }
 
 .counter-wrapper{
-    max-width: 80%;
-    width: 700px;
+    max-width: 600px;
+    width: 70%;
     background-color: whitesmoke;
-    margin: auto;
+    margin: 10px auto;
     border-radius: 20px;
     padding: 15px;
     box-shadow: 0px 0px 15px 10px black;
@@ -26,12 +30,12 @@ body {
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: 1.2rem;
     color: #990000;
 }
 
 h2 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin: .5em 0;
 }
 
@@ -42,23 +46,34 @@ h3 {
 }
 
 h4 {
-    font-size: 1rem;
+    font-size: 0.95rem;   
     
-    
+}
+
+p {
+    font-size: 0.5rem;
+    margin: .5em 0;
 }
 
 button {
     cursor: pointer;
+    font-size: 0.8rem;
 }
+
+#count-el {
+    font-size: 1.2rem;
+}
+
+
 
 .start-btn {
     border: none;
-    padding: 1em 2em;
+    padding: .5em 1em;
     color: whitesmoke;
     background: #329900;
     font-weight: bold;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    font-size: .7rem;
+    margin: 10px;
     border-radius: 5px;
 }
 
@@ -83,7 +98,6 @@ button {
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
-    gap: 20px;
 }
 
 /* 
@@ -92,20 +106,21 @@ background: #283838;
 
 */
 
-.timer-controls button {
+.timer-controls button,
+.stop-alert-btn {
     border: none;
     border-radius: 5px;
     padding: .5em 1em;
-    font-weight: bold;
+    font-size: .5rem;
 }
 
 .mode-btn {
     border: none;
     border-radius: 5px;
     padding: .5em 1em;
-    font-weight: bold;
-    margin-bottom: 10px;
-    background-color: #0f5d96;
+    font-size: .5rem;
+    margin-top: 10px;
+    background-color: grey;
     color: white;
 }
 
@@ -115,4 +130,18 @@ background: #283838;
 
 .green {
     color: #329900;
+}
+
+.celebration-message {
+    display: inline-block;
+    font-weight: bold;
+}
+
+@media (max-width: 260px) {
+    .counter-wrapper {
+        width: 90%;
+    }
+    .control-wrapper {
+        flex-direction: column;
+    }
 }

@@ -7,41 +7,45 @@
     </head>
     <body>
         <div class="counter-wrapper">
-            <h1>Let's Pomodoro</h1>
-            <h2 id="count-el">00:00</h2>
-            <button id="test-mode-btn" data-id="toggle-test-mode" class="mode-btn">Test Mode: ON (seconds)</button>
-            <button id="stop-alert-btn" data-id="stop-alert" style="display:none;">🔔 Stop Alert</button>
+            <div id="heading">
+                <h1>Let's Pomodoro</h1>
+                <h2 id="count-el">00:00</h2>           
+                <button id="stop-alert-btn" class="stop-alert-btn" data-id="stop-alert" style="display:none;">🔔 Stop Alert</button>
+            </div>
+                
             <div class="timer-controls">
                 <button data-id="pause">Pause</button>
                 <button data-id="resume">Resume</button>
                 <button data-id="restart">Restart</button>
                 <button data-id="stop">Stop</button>
+                <button data-id="save">Save</button>
             </div>
+            
             <div class="control-wrapper">
                 <div>
                     <h3 class="red">Pomodoro</h3>
                     <div class="session-controls">
-                        <p>Length: </p>
                         <button class="rouded-btn" data-target="pomodoro" data-id="decrement">-</button>
                         <span id="pomlength-el">0</span>
                         <button class="rouded-btn" data-target="pomodoro" data-id="increment">+</button>                    
                     </div>
-                    <button class="start-btn" data-target="pomodoro" data-id="start">START Session</button>
+                    <button class="start-btn" data-target="pomodoro" data-id="start">START</button>
                 </div>
                 <div>
                     <h3 class="green">Break</h3>
-                    <div class="break-controls">
-                        <p>Length: </p>
+                    <div class="break-controls">                        
                         <button class="rouded-btn" data-target="break" data-id="decrement">-</button>
                         <span id="breaklength-el">0</span>
                         <button class="rouded-btn" data-target="break" data-id="increment">+</button>
                         
                     </div>
-                    <button class="start-btn" data-target="break" data-id="start">START BREAK</button>
+                    <button class="start-btn" data-target="break" data-id="start">START</button>
                 </div>
             </div>
             <hr></hr>
+            
             <p id="save-el">Completed Sessions: </p>
+             <button id="test-mode-btn" data-id="toggle-test-mode" class="mode-btn">Test Mode: ON (seconds)</button>
         </div>
             <script src="index.js">
                 
