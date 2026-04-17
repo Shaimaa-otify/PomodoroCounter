@@ -13,6 +13,7 @@ let alertInterval = null
 let isTestMode = true
 let pendingCompletedSessions = []
 let savedCompletedSessions = []
+let currentDuration = 0
 
 
 function increment(target) {
@@ -141,6 +142,7 @@ function countdown(target) {
         countEl.classList.add("green")
     }
     
+    currentDuration = duration
     const durationSeconds = duration * (isTestMode ? 1 : 60)
     let seconds = isPaused ? pausedSeconds : durationSeconds
     if (!isPaused) {
@@ -162,6 +164,7 @@ function countdown(target) {
             countdownInterval = null
             setLengthButtonsDisabled(false)
             currentTarget = null
+            currentDuration = 0
             pausedSeconds = 0
             pendingCompletedSessions.push({
                 target,
@@ -195,8 +198,16 @@ function resumeCountdown() {
 
 function restartCountdown() {
     if (currentTarget) {
+        const target = currentTarget
+        const duration = currentDuration
         stopCountdown()
-        countdown(currentTarget)
+        // Restore duration values before restarting
+        if (target === "pomodoro") {
+            pomlengthEl.textContent = duration
+        } else if (target === "break") {
+            breaklengthEl.textContent = duration
+        }
+        countdown(target)
     }
 }
 
@@ -210,6 +221,8 @@ function stopCountdown() {
     currentTarget = null
     pausedSeconds = 0
     isPaused = false
+    currentDuration = 0
+    countEl.classList.remove("red", "green")
     countEl.textContent = "00:00"
 }
 
